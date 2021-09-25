@@ -13,18 +13,12 @@ name: "workflow"
       - main
 
 jobs:
-  ci:
-    name: "Integration"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Checkout Code"
-        uses: "actions/checkout@v2"
 
   cd:
     name: "Deployment"
     runs-on: "ubuntu-latest"
-    needs:
-      - ci
+  #  needs:
+  #    - ci
     steps:
       - name: "Checkout Code"
         uses: "actions/checkout@v2"
@@ -44,8 +38,8 @@ jobs:
         run:
           echo "$domain"
           echo $domain
-          echo "${{ env.region }}"
-          echo ${{ env.region }}
+          echo "${{ env.domain }}"
+          echo ${{ env.domain }}
           #sed -i "s/localhost/$domain/g" app/static/index.html
           #sed -i "s/localhost/"$domain"/g" app/static/index.html
           #cat app/static/index.html && ls -l
