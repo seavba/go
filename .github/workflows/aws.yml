@@ -38,7 +38,8 @@ jobs:
           echo "cluster=$(grep -A1 'resource "aws_ecs_cluster"' ./iac/ecs.tf | tail -n 1  | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
           echo "region=$(grep -A1 aws_region ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
           echo "domain=$(grep -A1 domain_name ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')"
-          sed -i "s/localhost/$domain_name/g" app/static/index.html
+          sed -i "s/localhost/$domain/g" app/static/index.html
+          cat app/static/index.html && ls -l
 
 
       - name: Configure AWS credentials
