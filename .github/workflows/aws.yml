@@ -40,6 +40,5 @@ jobs:
           echo $domain
           echo "${{ env.domain }}"
           echo ${{ env.domain }}
-          #sed -i "s/localhost/$domain/g" app/static/index.html
-          #sed -i "s/localhost/"$domain"/g" app/static/index.html
-          #cat app/static/index.html && ls -l
+          sed -i "s/localhost/${{ env.domain }}/g" app/static/index.html
+          cat app/static/index.html
