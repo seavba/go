@@ -1,4 +1,4 @@
-# <b>HTTPS Application in AWS ECS Fargate</b>
+# <b>Go Application in AWS ECS Fargate</b>
 
 ## <b>Repo description</b>
 
