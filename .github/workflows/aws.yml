@@ -35,7 +35,7 @@ jobs:
 
       - name: Print values
         id: host
-        run:
+        run:|
           echo "$domain"
           echo $domain
           echo "${{ env.domain }}"
