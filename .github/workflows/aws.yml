@@ -29,7 +29,7 @@ jobs:
       - name: "Checkout Code"
         uses: "actions/checkout@v2"
 
-      - name: Get repo name
+      - name: Get vars values
         id: vars
         run: |
           echo "ecr_repo=$(grep -A1 ecr_repo ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
@@ -37,8 +37,8 @@ jobs:
           echo "service=$(grep -A1 aws_ecs_service ./iac/ecs.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
           echo "cluster=$(grep -A1 'resource "aws_ecs_cluster"' ./iac/ecs.tf | tail -n 1  | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
           echo "region=$(grep -A1 aws_region ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
-          echo "domain=$(grep -A1 domain_name ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
-          sed -i 's/localhost/${{ env.domain_name }}/g' app/static/index.html
+          echo "domain=$(grep -A1 domain_name ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')"
+          sed -i "s/localhost/$domain_name/g" app/static/index.html
 
 
       - name: Configure AWS credentials
