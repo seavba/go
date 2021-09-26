@@ -113,7 +113,7 @@ Change deployment:
 <img src="./images/changed.png" alt="change" width="75%" /><br/>
 
 CI/CD
-[Github job execution](https://github.com/seavba/go/actions/runs/1275423111)
+[Github job execution](https://github.com/seavba/go/actions/runs/1275796234)
 
 
 ## Webgraphy
