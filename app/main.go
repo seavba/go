@@ -35,7 +35,6 @@ func returnSingleArticle(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-
 func createNewArticle(w http.ResponseWriter, r *http.Request) {
     // get the body of our POST request
     // unmarshal this into a new Article struct
