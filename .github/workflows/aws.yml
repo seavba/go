@@ -119,7 +119,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: fargate_ecs_task  # edit me
-          image: "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          image: ${{ steps.login-ecr.outputs.registry }}/${{ env.ecr_repo }}:${{ env.image_tag }}
 
       - name: temporal print
         run:  cat ${{ steps.task-def.outputs.task-definition }}
