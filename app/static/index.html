@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <title>Articles API</title>
-    <!-- (A) HIGHLIGHT JS LIBRARY -->
-    <!-- https://highlightjs.org/ -->
-    <!-- https://cdnjs.com/libraries/highlight.js/ -->
+    <meta charset="utf-8">
+    <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/tomorrow-night-bright.min.css">
     <link rel="stylesheet" href="css/app.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </head>
   <body>
-    <h1>Welcome to Articles API</h1>
-    <p>With this API you can get information from our Articles, post a new article and delete them. Use the following commands from your terminal in order to interact with our API.</p>
-    <pre>
-      <ul>
-        <li>Get all the articles (They are shown by clicking  <a href="articles">Articles list</a>)</li>
-        <code class="bash">
-          curl http://localhost/articles<br>
-[{"Id":"1","Title":"Hello","desc":"Article Description","content":"Article Content"},{"Id":"2","Title":"Hello 2","desc":"Article Description","content":"Article Content"}]
-        </code>
-        <li>Get a single article</li>
-          <code class="bash">
-            curl http://localhost/article/1 <br>
-{"Id":"1","Title":"Hello","desc":"Article Description","content":"Article Content"}
-          </code>
-        <li>Add an article</li>
-          <code class="bash">
-            curl -d '{"Id": "3", "Title": "My new product", "Desc": "New Article Description", "Content": "New Article Content"}' -H "Content-Type: application/json" -X POST http://localhost/article
-    {"Id":"3","Title":"My new product","desc":"New Article Description","content":"New Article Content"}
-          </code>
-        <li>Delete an article</li>
-      <code class="bash">
-        curl -X DELETE http://localhost/article/3
-      </code>
-    </pre>
+    <div class="foreground"></div>
+
+    <div class="midground">
+      <h1 style="margin-left: 1%"> Welcome to Articles API</h1>
+      <p style="margin-left: 1%;margin-bottom: -1%"> With this API you can get information from our Articles, post a new article and delete them. Use the following commands from your terminal in order to interact with our API.</p>
+      <pre>
+        <ol>
+          <li class=""><a href="#" style="width:1480px"><b>Get all the articles<b></a></li>
+          <code class="bash" style="width:1500px">  curl http://localhost/articles<br>
+  [{"Id":"1","Title":"Hello","desc":"Article Description","content":"Article Content"},{"Id":"2","Title":"Hello 2","desc":"Article Description","content":"Article Content"}]</code>
+          <li class=""><a href="#" style="width:1480px">Get a single article</a></li>
+            <code class="bash" style="width:1500px">  curl http://localhost/article/1<br>
+  {"Id":"1","Title":"Hello","desc":"Article Description","content":"Article Content"}</code>
+          <li class=""><a href="#" style="width:1480px">Add an article</a></li>
+            <code class="bash" style="width:1500px">  curl -d '{"Id": "3", "Title": "My new product", "Desc": "New Article Description", "Content": "New Article Content"}' -H "Content-Type: application/json" -X POST http://localhost/article<br>
+  {"Id":"3","Title":"My new product","desc":"New Article Description","content":"New Article Content"}</code>
+          <li class=""><a href="#" style="width:1480px">Delete an article</a></li>
+        <code class="bash" style="width:1500px">  curl -X DELETE http://localhost/article/3</code>
+        </ol>
+      </pre>
+  </div>
+
+    <div class="background">
+
+
+    </div>
   </body>
 </html>

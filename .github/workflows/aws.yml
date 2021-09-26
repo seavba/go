@@ -17,8 +17,55 @@ jobs:
     name: "Integration"
     runs-on: "ubuntu-latest"
     steps:
+
       - name: "Checkout Code"
         uses: "actions/checkout@v2"
+
+      - name: Get repo date values
+        id: vars
+        run: |
+          echo "ecr_repo=$(grep -A1 ecr_repo ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
+          echo "image_tag=$(grep -A1 image_tag ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.region }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and tag image
+        id: testing-build
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY:  ${{ env.ecr_repo }}
+          IMAGE_TAG: ${{ env.image_tag }}
+        run: |
+          # Build a docker container and push it to ECR.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+
+      - name: Run docker compose container for testing
+        run: docker-compose -f "testing/docker-compose.yml" up -d
+
+      - name: Run testing
+        run: bash testing/test.sh
+
+      - name: Stop docker compose
+        run: docker-compose -f "testing/docker-compose.yml" down
+
+      - name: Build and tag image
+        id: testing-build
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY:  ${{ env.ecr_repo }}
+          IMAGE_TAG: ${{ env.image_tag }}
+        run: |
+          # Build a docker container and push it to ECR.
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   cd:
     name: "Deployment"
@@ -62,6 +109,7 @@ jobs:
           IMAGE_TAG: ${{ env.image_tag }}
         run: |
           # Build a docker container and push it to ECR.
+          echo "registry=$ECR_REGISTRY" >> $GITHUB_ENV
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
