@@ -24,7 +24,7 @@ variable "vpc_cdir" {
 ###############################################################################
 
 variable "num_containers" {
-  default = 2
+  default = 1
 }
 
 variable "target_group_port"{
