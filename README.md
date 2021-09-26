@@ -31,7 +31,7 @@ Security groups, target groups, IAM policies, VPC and so on, are already provide
 
 ## CI / CD
 
-This repo contains a github action triggered by every pushing or merging done in the master branch. The github actions steps are:
+This repo contains a github action triggered by each pushing or merging done in the master/main branch and if the push is done in app, testing folders or Dockerfile. The github actions steps are:
 
 - Build the docker image
 - Run a docker container from a docker compose and perform the testing running test.sh script
