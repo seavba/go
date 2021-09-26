@@ -86,9 +86,36 @@ cd /your/repo/path/go/iac && terraform destroy -auto-approve
 
 ## Demo
 
-Play the following video and enjoy:
+Deployment:
 
-[![Watch the video](https://img.youtube.com/vi/1zc09DMztMI/0.jpg)](https://www.youtube.com/watch?v=1zc09DMztMI)
+<img src="./images/deployment.png" alt="Deployment" width="75%" /><br/>
+
+Application look:
+
+<img src="./images/look.png" alt="Look" width="75%" /><br/>
+
+Curl testing:
+
+ - List all articles
+ - Read a single article
+ - Add an article
+ - Delete an article
+
+ <img src="./images/all.png" alt="all" /><br/>
+
+
+Pushing a change:
+
+<img src="./images/change.png" alt="change" width="75%" /><br/>
+
+Change deployment:
+
+<img src="./images/changed.png" alt="change" width="75%" /><br/>
+
+
+CI/CD
+[Github job execution]()
+
 
 
 ## Webgraphy

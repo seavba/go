@@ -10,6 +10,7 @@ resource "aws_ecr_repository" "ecr_repo" {
 resource "null_resource" "docker" {
    provisioner "local-exec" {
    command = <<-EOT
+     sed -i'' -e "s/localhost/${ var.domain_name }/g" ../app/static/index.html
      docker build -t "${local.ecr_repo_url}/${var.ecr_repo}:${var.ecr_image_tag}" ..
      aws ecr get-login-password --region ${var.aws_region} | docker login --username AWS --password-stdin ${local.ecr_repo_url}
      docker push "${local.ecr_repo_url}/${var.ecr_repo}:${var.ecr_image_tag}"

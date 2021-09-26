@@ -17,16 +17,16 @@
       <pre>
         <ol>
           <li class=""><a href="#" style="width:1480px"><b>Get all the articles<b></a></li>
-          <code class="bash" style="width:1500px">  curl http://localhost/articles<br>
+          <code class="bash" style="width:1500px">  curl -s https://localhost/articles | jq .<br>
   [{"Id":"1","Title":"Hello","desc":"Article Description","content":"Article Content"},{"Id":"2","Title":"Hello 2","desc":"Article Description","content":"Article Content"}]</code>
           <li class=""><a href="#" style="width:1480px">Get a single article</a></li>
-            <code class="bash" style="width:1500px">  curl http://localhost/article/1<br>
+            <code class="bash" style="width:1500px">  curl -s https://localhost/article/1 | jq .<br>
   {"Id":"1","Title":"Hello","desc":"Article Description","content":"Article Content"}</code>
           <li class=""><a href="#" style="width:1480px">Add an article</a></li>
-            <code class="bash" style="width:1500px">  curl -d '{"Id": "3", "Title": "My new product", "Desc": "New Article Description", "Content": "New Article Content"}' -H "Content-Type: application/json" -X POST http://localhost/article<br>
+            <code class="bash" style="width:1500px">  curl -d '{"Id": "3", "Title": "My new product", "Desc": "New Article Description", "Content": "New Article Content"}' -H "Content-Type: application/json" -X POST https://localhost/article<br>
   {"Id":"3","Title":"My new product","desc":"New Article Description","content":"New Article Content"}</code>
           <li class=""><a href="#" style="width:1480px">Delete an article</a></li>
-        <code class="bash" style="width:1500px">  curl -X DELETE http://localhost/article/3</code>
+        <code class="bash" style="width:1500px">  curl -X DELETE https://localhost/article/3</code>
         </ol>
       </pre>
   </div>
