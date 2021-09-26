@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 sleep 10
-
 error=0
 echo "-- response code test --"
 echo "Testing response code, looking for a 200 code"
