@@ -101,21 +101,19 @@ Curl testing:
  - Add an article
  - Delete an article
 
- <img src="./images/all.png" alt="all" /><br/>
+<img src="./images/all.png" alt="all" /><br/>
 
 
-Pushing a change:
+Pushing a change. URLs must be https:
 
-<img src="./images/change.png" alt="change" width="75%" /><br/>
+<img src="./images/change.png" alt="change" width="50%" /><br/>
 
 Change deployment:
 
 <img src="./images/changed.png" alt="change" width="75%" /><br/>
 
-
 CI/CD
-[Github job execution]()
-
+[Github job execution](https://github.com/seavba/go/actions/runs/1275423111)
 
 
 ## Webgraphy

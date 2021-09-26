@@ -98,17 +98,26 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.region }}
 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
       - name: Download task definition
         run: |
           aws ecs describe-task-definition --task-definition fargate_ecs_task --query taskDefinition > task-definition.json
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY:  ${{ env.ecr_repo }}
+          IMAGE_TAG: ${{ env.image_tag }}
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
           container-name: fargate_ecs_task  # edit me
-          image: ${{ steps.build-image.outputs.image }}
+          image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
