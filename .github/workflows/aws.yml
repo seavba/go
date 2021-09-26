@@ -109,6 +109,11 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition fargate_ecs_task --query taskDefinition > task-definition.json
 
+      - name: temporal print
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run:  echo $ECR_REGISTRY
+
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         env:
@@ -119,7 +124,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: fargate_ecs_task  # edit me
-          image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          image: "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
 
       - name: Deploy Amazon ECS task definition
