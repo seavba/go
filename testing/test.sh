@@ -35,7 +35,7 @@ fi
 
 echo "-- Article creation test --"
 echo "Testing article creation ,looking for a valid json list"
-curl -s -d '{"Id": "3", "Title": "My new product", "Desc": "New Article Description", "Content": "New Article Content"}' -H "Content-Type: application/json" -X POST https://localhost/article
+curl -s -d '{"Id": "3", "Title": "My new product", "Desc": "New Article Description", "Content": "New Article Content"}' -H "Content-Type: application/json" -X POST localhost/article
 json_string=$(curl -s localhost/article/3)
 id=$(echo "$json_string" |  jq -r '.Id')
 if [[ $id -eq 3 ]]; then
@@ -47,7 +47,7 @@ fi
 
 echo "-- Article deletion test --"
 echo "Testing article deletion ,looking for a not valid json list"
-curl -s -X DELETE http://localhost/article/3
+curl -s -X DELETE localhost/article/3
 json_string=$(curl -s localhost/article/3)
 id=$(echo "$json_string" |  jq -r '.Id')
 if [[ $id -eq 3 ]]; then
