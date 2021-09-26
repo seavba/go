@@ -1,5 +1,5 @@
 FROM golang
-RUN apt-get update && apt-get --assume-yes install vim
+RUN apt-get update
 WORKDIR /go/src/app
 COPY app .
 EXPOSE 8080
