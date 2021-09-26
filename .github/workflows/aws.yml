@@ -7,8 +7,8 @@ name: "workflow"
       - main
       - master
     paths:
-      - 'app/**'
-      - 'testing/**'
+      - 'app/*'
+      - 'testing/*'
       - 'Dockerfile'
     tags:
       - "*"
