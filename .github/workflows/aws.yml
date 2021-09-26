@@ -6,12 +6,16 @@ name: "workflow"
     branches:
       - main
       - master
+    paths:
+      - 'app/**'
+      - 'testing/**'
+      - 'Dockerfile'
     tags:
       - "*"
   pull_request:
     branches:
       - main
-
+      - master
 jobs:
   ci:
     name: "Integration"
