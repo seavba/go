@@ -26,6 +26,7 @@ jobs:
         run: |
           echo "ecr_repo=$(grep -A1 ecr_repo ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
           echo "image_tag=$(grep -A1 image_tag ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
+          echo "region=$(grep -A1 aws_region ./iac/variables.tf | tail -n 1 | awk -F '\"' '{print $2}')" >> $GITHUB_ENV
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
