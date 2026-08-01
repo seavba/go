@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Google_Calendar__create_event",
+      "mcp__Google_Calendar__update_event",
+      "mcp__b1e6336f-6df8-4cf8-a6ab-932549bc712b__create_event",
+      "mcp__b1e6336f-6df8-4cf8-a6ab-932549bc712b__update_event"
+    ]
+  }
+}
