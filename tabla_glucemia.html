@@ -62,6 +62,20 @@
     margin-top: 1.5rem; font-size: .82rem; color: var(--muted);
     border-top: 1px solid var(--line); padding-top: 1rem;
   }
+  @page { margin: 16mm 14mm; }
+  @media print {
+    :root {
+      --bg: #fff; --fg: #1a1a1a; --muted: #5a5a5a;
+      --line: #d8d8d4; --card: #fff; --accent: #3d5a80;
+    }
+    body { padding: 0; font-size: 11pt; }
+    .stat { break-inside: avoid; }
+    thead { display: table-header-group; }
+    tr { break-inside: avoid; }
+    .flag { border: 1px solid currentColor; }
+    .flag.baja { background: #fff; color: #1e3f66; }
+    .flag.alta { background: #fff; color: #7a2e20; }
+  }
 </style>
 <main>
   <h1>Registro de glucemia</h1>

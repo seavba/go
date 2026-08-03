@@ -2,6 +2,9 @@
 
 Datos en `glucemia_log.json`. Cada apunte se commitea y se pushea.
 
+`gen_tabla.py` genera `tabla_glucemia.html` a partir del JSON. `gen_pdf.sh`
+lo regenera y lo imprime a `glucemia.pdf` con Chromium headless.
+
 ## Comandos
 
 | Comando | Efecto |
@@ -10,6 +13,7 @@ Datos en `glucemia_log.json`. Cada apunte se commitea y se pushea.
 | `apunta <valor> y alarma` | Registra el valor **y** crea el evento de recordatorio |
 | `alarma` | Crea el evento para el último valor registrado |
 | `dame tabla` | Muestra el histórico completo en una tabla |
+| `pdf` | Genera `glucemia.pdf` con el histórico completo y lo envía |
 
 `apunta <valor> y alarma` y la secuencia `apunta <valor>` → `alarma` son equivalentes.
 
