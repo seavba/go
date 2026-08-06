@@ -26,19 +26,34 @@ def main():
         return 1
 
     registros = sorted(registros, key=lambda r: (r["fecha"], r["hora"]))
-    valores = [r["valor"] for r in registros]
+    # Una entrada puede ser una lectura (valor) o solo una anotación (nota).
+    valores = [r["valor"] for r in registros if r.get("valor") is not None]
 
     filas = []
     for r in registros:
-        clase, etiqueta = flag(r["valor"])
-        marca = f'<span class="flag {clase}">{etiqueta}</span>' if etiqueta else ""
+        valor = r.get("valor")
+        celdas = []
+        if valor is None:
+            celdas.append('<td class="num vacio">—</td>')
+        else:
+            clase, etiqueta = flag(valor)
+            if etiqueta:
+                celdas.append(f'<td class="num">{valor}</td>')
+                celdas.append(f'<td><span class="flag {clase}">{etiqueta}</span></td>')
+            else:
+                celdas.append(f'<td class="num">{valor}</td>')
+
+        if len(celdas) == 1:
+            nota = r.get("nota", "")
+            celdas.append(f'<td class="nota-celda">{nota}</td>')
+
         filas.append(
             f"<tr><td>{r['fecha']}</td><td>{r['hora']}</td>"
-            f"<td class=\"num\">{r['valor']}</td><td>{marca}</td></tr>"
+            f"{''.join(celdas)}</tr>"
         )
 
     html = TEMPLATE.format(
-        total=len(registros),
+        total=len(valores),
         ultimo=valores[-1],
         media=round(sum(valores) / len(valores)),
         minimo=min(valores),
@@ -98,6 +113,8 @@ TEMPLATE = """<title>Registro de glucemia</title>
   }}
   td {{ padding: .6rem .75rem .6rem 0; border-bottom: 1px solid var(--line); }}
   td.num {{ font-weight: 600; }}
+  td.num.vacio {{ color: var(--muted); font-weight: 400; }}
+  td.nota-celda {{ color: var(--muted); font-style: italic; }}
   th:last-child, td:last-child {{ padding-right: 0; }}
   .flag {{
     font-size: .72rem; padding: .15rem .5rem; border-radius: 1rem;
