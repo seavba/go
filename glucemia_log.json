@@ -203,5 +203,11 @@
     "valor": null,
     "nota": "No cena",
     "zona": "Zest"
+  },
+  {
+    "fecha": "2026-08-07",
+    "hora": "07:55:23",
+    "valor": 107,
+    "zona": "Zest"
   }
 ]
